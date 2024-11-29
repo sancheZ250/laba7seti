@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fun Interactive Page</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            overflow: hidden;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            font-size: 3rem;
+            margin: 20px 0;
+        }
+
+        .bouncing-ball {
+            width: 50px;
+            height: 50px;
+            background-color: #fff;
+            border-radius: 50%;
+            position: absolute;
+            animation: bounce 2s infinite cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(300px);
+            }
+        }
+
+        .interactive-button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 1.5rem;
+            color: white;
+            background-color: #6c5ce7;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .interactive-button:hover {
+            transform: scale(1.1);
+            background-color: #a29bfe;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Fun Page!</h1>
+    <button class="interactive-button" onclick="addBall()">Click me to add more balls!</button>
+
+    <script>
+        // Function to add bouncing balls
+        function addBall() {
+            const ball = document.createElement('div');
+            ball.className = 'bouncing-ball';
+
+            // Randomize position
+            ball.style.left = Math.random() * window.innerWidth + 'px';
+            ball.style.top = Math.random() * window.innerHeight / 2 + 'px';
+
+            // Add to body
+            document.body.appendChild(ball);
+
+            // Remove ball after 10 seconds
+            setTimeout(() => {
+                ball.remove();
+            }, 10000);
+        }
+    </script>
+</body>
+</html>
